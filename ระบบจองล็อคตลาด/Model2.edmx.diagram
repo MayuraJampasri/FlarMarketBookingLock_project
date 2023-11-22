@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="dd317d7489b24cfa9b9ff7c3f54bad42" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_FleamarketModel.Booking_market" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_FleamarketModel.Category_product" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_FleamarketModel.Customer_market" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_FleamarketModel.Employee_market" Width="1.5" PointX="3" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_FleamarketModel.Fine_market" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_FleamarketModel.Lock_return" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_FleamarketModel.Login_Account" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_FleamarketModel.Marketlock" Width="1.5" PointX="7.5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_FleamarketModel.Member_market" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_FleamarketModel.Payment_Market" Width="1.5" PointX="7.5" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_FleamarketModel.Revenue_Table" Width="1.5" PointX="7.5" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_FleamarketModel.sysdiagram" Width="1.5" PointX="9.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_FleamarketModel.Utility_Market" Width="1.5" PointX="3" PointY="18.875" IsExpanded="true" />
+        <AssociationConnector Association="DB_FleamarketModel.FK_Booking_market_Category_product" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_FleamarketModel.FK_Booking_market_Customer_market" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_FleamarketModel.FK_Booking_market_Employee_market" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_FleamarketModel.FK_Booking_market_Lock_return" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_FleamarketModel.FK_Booking_market_Marketlock" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_FleamarketModel.FK_Booking_market_Utility_Market" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_FleamarketModel.FK_Marketlock_Booking_market" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_FleamarketModel.FK_Payment_Market_Booking_market" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_FleamarketModel.FK_Revenue_Table_Booking_market" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_FleamarketModel.FK_Lock_return_Fine_market2" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_FleamarketModel.FK_Lock_return_Fine_market3" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

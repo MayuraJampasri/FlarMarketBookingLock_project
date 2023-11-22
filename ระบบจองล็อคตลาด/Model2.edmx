@@ -1,0 +1,981 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DB_FleamarketModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Booking_market">
+          <Key>
+            <PropertyRef Name="BookingNumber" />
+          </Key>
+          <Property Name="BookingNumber" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="ShopName" Type="varchar" MaxLength="50" />
+          <Property Name="EmployeeID" Type="varchar" MaxLength="50" />
+          <Property Name="Marketlock_ID" Type="varchar" MaxLength="20" />
+          <Property Name="Typesofproductssold" Type="varchar" MaxLength="5" />
+          <Property Name="Numberofproducts" Type="varchar" MaxLength="20" />
+          <Property Name="LockPrice" Type="money" />
+          <Property Name="PaymentAmount" Type="money" />
+          <Property Name="Paymentstatus" Type="varchar" MaxLength="50" />
+          <Property Name="BookingDetails" Type="varchar" MaxLength="50" />
+          <Property Name="ReservationPeriod" Type="int" />
+          <Property Name="Dateofreservation" Type="datetime" />
+          <Property Name="Bookingenddate" Type="datetime" />
+          <Property Name="TransactionStartDate" Type="datetime" />
+          <Property Name="LockReturnID" Type="int" />
+          <Property Name="UtilityID" Type="int" />
+        </EntityType>
+        <EntityType Name="Category_product">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Customer_market">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="CustomerID_card_number" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="CustomerLog_ID" Type="varchar" MaxLength="50" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="50" />
+          <Property Name="CustomerLastname" Type="varchar" MaxLength="50" />
+          <Property Name="CustomerSex" Type="varchar" MaxLength="50" />
+          <Property Name="CustomerPhone" Type="varchar" MaxLength="10" />
+          <Property Name="CustomerEmail" Type="varchar" MaxLength="100" />
+          <Property Name="CustomerStatus" Type="varchar" MaxLength="50" />
+          <Property Name="BookingDetails" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Employee_market">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmployeeID_card_number" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="EmployeeName" Type="varchar" MaxLength="50" />
+          <Property Name="EmployeeLastname" Type="varchar" MaxLength="50" />
+          <Property Name="EmployeeSex" Type="varchar" MaxLength="50" />
+          <Property Name="Employeebirthday" Type="date" />
+          <Property Name="Employeeaddress" Type="varchar" MaxLength="100" />
+          <Property Name="EmployeePhone" Type="varchar" MaxLength="10" />
+          <Property Name="EmployeeEmail" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Fine_market">
+          <Key>
+            <PropertyRef Name="FineID" />
+          </Key>
+          <Property Name="FineID" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="FineType" Type="varchar" MaxLength="50" />
+          <Property Name="FineFee" Type="money" />
+        </EntityType>
+        <EntityType Name="Lock_return">
+          <Key>
+            <PropertyRef Name="Lock_ReturnID" />
+          </Key>
+          <Property Name="Lock_ReturnID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookingID" Type="varchar" MaxLength="20" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="50" />
+          <Property Name="CustomerLastname" Type="varchar" MaxLength="50" />
+          <Property Name="Marketlock_ID" Type="varchar" MaxLength="20" />
+          <Property Name="BookingDetails" Type="varchar" MaxLength="50" />
+          <Property Name="LockReturnDate" Type="datetime" />
+          <Property Name="LateReturnPeriod" Type="int" />
+          <Property Name="FineTypeID1" Type="varchar" MaxLength="5" />
+          <Property Name="FineTypeID2" Type="varchar" MaxLength="5" />
+          <Property Name="FineSum" Type="money" />
+          <Property Name="LockSize" Type="varchar" MaxLength="20" />
+          <Property Name="Bookingenddate" Type="datetime" />
+          <Property Name="LockReturnStatus" Type="varchar" MaxLength="50" />
+          <Property Name="FinePayStatus" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Login_Account">
+          <Key>
+            <PropertyRef Name="LoginID" />
+          </Key>
+          <Property Name="LoginID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginUsername" Type="varchar" MaxLength="20" />
+          <Property Name="LoginPassword" Type="varchar" MaxLength="20" />
+          <Property Name="LoginType" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Marketlock">
+          <Key>
+            <PropertyRef Name="Marketlock_ID" />
+          </Key>
+          <Property Name="Marketlock_ID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="MarketZonename" Type="varchar" MaxLength="50" />
+          <Property Name="Marketlock_Size" Type="varchar" MaxLength="20" />
+          <Property Name="PriceforFrequenters" Type="money" />
+          <Property Name="PriceforIrregulars" Type="money" />
+          <Property Name="Marketlock_Status" Type="varchar" MaxLength="50" />
+          <Property Name="BookingNumber" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Member_market">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="MemberID_card_number" Type="nchar" MaxLength="100" />
+          <Property Name="MemberName" Type="varchar" MaxLength="50" />
+          <Property Name="MemberLast" Type="varchar" MaxLength="50" />
+          <Property Name="MemberSex" Type="varchar" MaxLength="50" />
+          <Property Name="MemberBirthday" Type="date" />
+          <Property Name="MemberPhone" Type="varchar" MaxLength="20" />
+          <Property Name="MemberEmail" Type="varchar" MaxLength="50" />
+          <Property Name="MemberUsername" Type="varchar" MaxLength="50" />
+          <Property Name="MemberStatus" Type="varchar" MaxLength="50" />
+          <Property Name="MemberAccesslevel" Type="varchar" MaxLength="50" />
+          <Property Name="MemberInformation" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Payment_Market">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentType" Type="varchar" MaxLength="20" />
+          <Property Name="BookingNumber" Type="varchar" MaxLength="20" />
+          <Property Name="SlipPath" Type="varchar" MaxLength="100" />
+          <Property Name="SlipImg" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Revenue_Table">
+          <Key>
+            <PropertyRef Name="RevenueID" />
+          </Key>
+          <Property Name="RevenueID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RevenueType" Type="varchar" MaxLength="20" />
+          <Property Name="RevenueNum" Type="money" />
+          <Property Name="BookingNumber" Type="varchar" MaxLength="20" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="TransactionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Utility_Market">
+          <Key>
+            <PropertyRef Name="UtilityID" />
+          </Key>
+          <Property Name="UtilityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UtilityAmount" Type="money" />
+          <Property Name="Billing_Date" Type="date" />
+          <Property Name="BookingNumber" Type="varchar" MaxLength="20" />
+          <Property Name="PaymentStatus" Type="varchar" MaxLength="20" />
+          <Property Name="DurationUsed" Type="int" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="50" />
+          <Property Name="CustomerLname" Type="varchar" MaxLength="50" />
+          <Property Name="BookingDetail" Type="varchar" MaxLength="50" />
+          <Property Name="LockID" Type="varchar" MaxLength="20" />
+          <Property Name="MarketZonename" Type="varchar" MaxLength="50" />
+          <Property Name="EndDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_Booking_market_Category_product">
+          <End Role="Category_product" Type="Self.Category_product" Multiplicity="0..1" />
+          <End Role="Booking_market" Type="Self.Booking_market" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category_product">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Booking_market">
+              <PropertyRef Name="Typesofproductssold" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_market_Customer_market">
+          <End Role="Customer_market" Type="Self.Customer_market" Multiplicity="1" />
+          <End Role="Booking_market" Type="Self.Booking_market" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer_market">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Booking_market">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_market_Employee_market">
+          <End Role="Employee_market" Type="Self.Employee_market" Multiplicity="0..1" />
+          <End Role="Booking_market" Type="Self.Booking_market" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee_market">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Booking_market">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_market_Lock_return">
+          <End Role="Lock_return" Type="Self.Lock_return" Multiplicity="0..1" />
+          <End Role="Booking_market" Type="Self.Booking_market" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lock_return">
+              <PropertyRef Name="Lock_ReturnID" />
+            </Principal>
+            <Dependent Role="Booking_market">
+              <PropertyRef Name="LockReturnID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_market_Marketlock">
+          <End Role="Marketlock" Type="Self.Marketlock" Multiplicity="0..1" />
+          <End Role="Booking_market" Type="Self.Booking_market" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marketlock">
+              <PropertyRef Name="Marketlock_ID" />
+            </Principal>
+            <Dependent Role="Booking_market">
+              <PropertyRef Name="Marketlock_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_market_Utility_Market">
+          <End Role="Utility_Market" Type="Self.Utility_Market" Multiplicity="0..1" />
+          <End Role="Booking_market" Type="Self.Booking_market" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utility_Market">
+              <PropertyRef Name="UtilityID" />
+            </Principal>
+            <Dependent Role="Booking_market">
+              <PropertyRef Name="UtilityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lock_return_Fine_market2">
+          <End Role="Fine_market" Type="Self.Fine_market" Multiplicity="0..1" />
+          <End Role="Lock_return" Type="Self.Lock_return" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fine_market">
+              <PropertyRef Name="FineID" />
+            </Principal>
+            <Dependent Role="Lock_return">
+              <PropertyRef Name="FineTypeID1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lock_return_Fine_market3">
+          <End Role="Fine_market" Type="Self.Fine_market" Multiplicity="0..1" />
+          <End Role="Lock_return" Type="Self.Lock_return" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fine_market">
+              <PropertyRef Name="FineID" />
+            </Principal>
+            <Dependent Role="Lock_return">
+              <PropertyRef Name="FineTypeID2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Marketlock_Booking_market">
+          <End Role="Booking_market" Type="Self.Booking_market" Multiplicity="0..1" />
+          <End Role="Marketlock" Type="Self.Marketlock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Booking_market">
+              <PropertyRef Name="BookingNumber" />
+            </Principal>
+            <Dependent Role="Marketlock">
+              <PropertyRef Name="BookingNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_Market_Booking_market">
+          <End Role="Booking_market" Type="Self.Booking_market" Multiplicity="0..1" />
+          <End Role="Payment_Market" Type="Self.Payment_Market" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Booking_market">
+              <PropertyRef Name="BookingNumber" />
+            </Principal>
+            <Dependent Role="Payment_Market">
+              <PropertyRef Name="BookingNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Revenue_Table_Booking_market">
+          <End Role="Booking_market" Type="Self.Booking_market" Multiplicity="0..1" />
+          <End Role="Revenue_Table" Type="Self.Revenue_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Booking_market">
+              <PropertyRef Name="BookingNumber" />
+            </Principal>
+            <Dependent Role="Revenue_Table">
+              <PropertyRef Name="BookingNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_FleamarketModelStoreContainer">
+          <EntitySet Name="Booking_market" EntityType="Self.Booking_market" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category_product" EntityType="Self.Category_product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer_market" EntityType="Self.Customer_market" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee_market" EntityType="Self.Employee_market" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fine_market" EntityType="Self.Fine_market" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lock_return" EntityType="Self.Lock_return" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Login_Account" EntityType="Self.Login_Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Marketlock" EntityType="Self.Marketlock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Member_market" EntityType="Self.Member_market" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment_Market" EntityType="Self.Payment_Market" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Revenue_Table" EntityType="Self.Revenue_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Utility_Market" EntityType="Self.Utility_Market" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Booking_market_Category_product" Association="Self.FK_Booking_market_Category_product">
+            <End Role="Category_product" EntitySet="Category_product" />
+            <End Role="Booking_market" EntitySet="Booking_market" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_market_Customer_market" Association="Self.FK_Booking_market_Customer_market">
+            <End Role="Customer_market" EntitySet="Customer_market" />
+            <End Role="Booking_market" EntitySet="Booking_market" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_market_Employee_market" Association="Self.FK_Booking_market_Employee_market">
+            <End Role="Employee_market" EntitySet="Employee_market" />
+            <End Role="Booking_market" EntitySet="Booking_market" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_market_Lock_return" Association="Self.FK_Booking_market_Lock_return">
+            <End Role="Lock_return" EntitySet="Lock_return" />
+            <End Role="Booking_market" EntitySet="Booking_market" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_market_Marketlock" Association="Self.FK_Booking_market_Marketlock">
+            <End Role="Marketlock" EntitySet="Marketlock" />
+            <End Role="Booking_market" EntitySet="Booking_market" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_market_Utility_Market" Association="Self.FK_Booking_market_Utility_Market">
+            <End Role="Utility_Market" EntitySet="Utility_Market" />
+            <End Role="Booking_market" EntitySet="Booking_market" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lock_return_Fine_market2" Association="Self.FK_Lock_return_Fine_market2">
+            <End Role="Fine_market" EntitySet="Fine_market" />
+            <End Role="Lock_return" EntitySet="Lock_return" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lock_return_Fine_market3" Association="Self.FK_Lock_return_Fine_market3">
+            <End Role="Fine_market" EntitySet="Fine_market" />
+            <End Role="Lock_return" EntitySet="Lock_return" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Marketlock_Booking_market" Association="Self.FK_Marketlock_Booking_market">
+            <End Role="Booking_market" EntitySet="Booking_market" />
+            <End Role="Marketlock" EntitySet="Marketlock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_Market_Booking_market" Association="Self.FK_Payment_Market_Booking_market">
+            <End Role="Booking_market" EntitySet="Booking_market" />
+            <End Role="Payment_Market" EntitySet="Payment_Market" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Revenue_Table_Booking_market" Association="Self.FK_Revenue_Table_Booking_market">
+            <End Role="Booking_market" EntitySet="Booking_market" />
+            <End Role="Revenue_Table" EntitySet="Revenue_Table" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_FleamarketModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Booking_market">
+          <Key>
+            <PropertyRef Name="BookingNumber" />
+          </Key>
+          <Property Name="BookingNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="ShopName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Marketlock_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Typesofproductssold" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Numberofproducts" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LockPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PaymentAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Paymentstatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BookingDetails" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ReservationPeriod" Type="Int32" />
+          <Property Name="Dateofreservation" Type="DateTime" Precision="3" />
+          <Property Name="Bookingenddate" Type="DateTime" Precision="3" />
+          <Property Name="TransactionStartDate" Type="DateTime" Precision="3" />
+          <Property Name="LockReturnID" Type="Int32" />
+          <Property Name="UtilityID" Type="Int32" />
+          <NavigationProperty Name="Category_product" Relationship="Self.FK_Booking_market_Category_product" FromRole="Booking_market" ToRole="Category_product" />
+          <NavigationProperty Name="Customer_market" Relationship="Self.FK_Booking_market_Customer_market" FromRole="Booking_market" ToRole="Customer_market" />
+          <NavigationProperty Name="Employee_market" Relationship="Self.FK_Booking_market_Employee_market" FromRole="Booking_market" ToRole="Employee_market" />
+          <NavigationProperty Name="Lock_return" Relationship="Self.FK_Booking_market_Lock_return" FromRole="Booking_market" ToRole="Lock_return" />
+          <NavigationProperty Name="Marketlock" Relationship="Self.FK_Booking_market_Marketlock" FromRole="Booking_market" ToRole="Marketlock" />
+          <NavigationProperty Name="Utility_Market" Relationship="Self.FK_Booking_market_Utility_Market" FromRole="Booking_market" ToRole="Utility_Market" />
+          <NavigationProperty Name="Marketlocks" Relationship="Self.FK_Marketlock_Booking_market" FromRole="Booking_market" ToRole="Marketlock" />
+          <NavigationProperty Name="Payment_Market" Relationship="Self.FK_Payment_Market_Booking_market" FromRole="Booking_market" ToRole="Payment_Market" />
+          <NavigationProperty Name="Revenue_Table" Relationship="Self.FK_Revenue_Table_Booking_market" FromRole="Booking_market" ToRole="Revenue_Table" />
+        </EntityType>
+        <EntityType Name="Category_product">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Booking_market" Relationship="Self.FK_Booking_market_Category_product" FromRole="Category_product" ToRole="Booking_market" />
+        </EntityType>
+        <EntityType Name="Customer_market">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerID_card_number" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CustomerLog_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerLastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerSex" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerPhone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BookingDetails" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Booking_market" Relationship="Self.FK_Booking_market_Customer_market" FromRole="Customer_market" ToRole="Booking_market" />
+        </EntityType>
+        <EntityType Name="Employee_market">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmployeeID_card_number" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmployeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeLastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeSex" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Employeebirthday" Type="DateTime" Precision="0" />
+          <Property Name="Employeeaddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeePhone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Booking_market" Relationship="Self.FK_Booking_market_Employee_market" FromRole="Employee_market" ToRole="Booking_market" />
+        </EntityType>
+        <EntityType Name="Fine_market">
+          <Key>
+            <PropertyRef Name="FineID" />
+          </Key>
+          <Property Name="FineID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FineType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FineFee" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Lock_return" Relationship="Self.FK_Lock_return_Fine_market2" FromRole="Fine_market" ToRole="Lock_return" />
+          <NavigationProperty Name="Lock_return1" Relationship="Self.FK_Lock_return_Fine_market3" FromRole="Fine_market" ToRole="Lock_return" />
+        </EntityType>
+        <EntityType Name="Lock_return">
+          <Key>
+            <PropertyRef Name="Lock_ReturnID" />
+          </Key>
+          <Property Name="Lock_ReturnID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookingID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerLastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Marketlock_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BookingDetails" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LockReturnDate" Type="DateTime" Precision="3" />
+          <Property Name="LateReturnPeriod" Type="Int32" />
+          <Property Name="FineTypeID1" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="FineTypeID2" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="FineSum" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="LockSize" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Bookingenddate" Type="DateTime" Precision="3" />
+          <Property Name="LockReturnStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FinePayStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Booking_market" Relationship="Self.FK_Booking_market_Lock_return" FromRole="Lock_return" ToRole="Booking_market" />
+          <NavigationProperty Name="Fine_market" Relationship="Self.FK_Lock_return_Fine_market2" FromRole="Lock_return" ToRole="Fine_market" />
+          <NavigationProperty Name="Fine_market1" Relationship="Self.FK_Lock_return_Fine_market3" FromRole="Lock_return" ToRole="Fine_market" />
+        </EntityType>
+        <EntityType Name="Login_Account">
+          <Key>
+            <PropertyRef Name="LoginID" />
+          </Key>
+          <Property Name="LoginID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginUsername" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LoginPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LoginType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Marketlock">
+          <Key>
+            <PropertyRef Name="Marketlock_ID" />
+          </Key>
+          <Property Name="Marketlock_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MarketZonename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Marketlock_Size" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PriceforFrequenters" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PriceforIrregulars" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Marketlock_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BookingNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Booking_market" Relationship="Self.FK_Booking_market_Marketlock" FromRole="Marketlock" ToRole="Booking_market" />
+          <NavigationProperty Name="Booking_market1" Relationship="Self.FK_Marketlock_Booking_market" FromRole="Marketlock" ToRole="Booking_market" />
+        </EntityType>
+        <EntityType Name="Member_market">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="MemberID_card_number" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="MemberName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MemberLast" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MemberSex" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MemberBirthday" Type="DateTime" Precision="0" />
+          <Property Name="MemberPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MemberEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MemberUsername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MemberStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MemberAccesslevel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MemberInformation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Payment_Market">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BookingNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SlipPath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SlipImg" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Booking_market" Relationship="Self.FK_Payment_Market_Booking_market" FromRole="Payment_Market" ToRole="Booking_market" />
+        </EntityType>
+        <EntityType Name="Revenue_Table">
+          <Key>
+            <PropertyRef Name="RevenueID" />
+          </Key>
+          <Property Name="RevenueID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RevenueType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RevenueNum" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="BookingNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="TransactionDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Booking_market" Relationship="Self.FK_Revenue_Table_Booking_market" FromRole="Revenue_Table" ToRole="Booking_market" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Utility_Market">
+          <Key>
+            <PropertyRef Name="UtilityID" />
+          </Key>
+          <Property Name="UtilityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UtilityAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Billing_Date" Type="DateTime" Precision="0" />
+          <Property Name="BookingNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PaymentStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DurationUsed" Type="Int32" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerLname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BookingDetail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LockID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MarketZonename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Booking_market" Relationship="Self.FK_Booking_market_Utility_Market" FromRole="Utility_Market" ToRole="Booking_market" />
+        </EntityType>
+        <Association Name="FK_Booking_market_Category_product">
+          <End Role="Category_product" Type="Self.Category_product" Multiplicity="0..1" />
+          <End Role="Booking_market" Type="Self.Booking_market" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category_product">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Booking_market">
+              <PropertyRef Name="Typesofproductssold" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_market_Customer_market">
+          <End Role="Customer_market" Type="Self.Customer_market" Multiplicity="1" />
+          <End Role="Booking_market" Type="Self.Booking_market" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer_market">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Booking_market">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_market_Employee_market">
+          <End Role="Employee_market" Type="Self.Employee_market" Multiplicity="0..1" />
+          <End Role="Booking_market" Type="Self.Booking_market" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee_market">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Booking_market">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_market_Lock_return">
+          <End Role="Lock_return" Type="Self.Lock_return" Multiplicity="0..1" />
+          <End Role="Booking_market" Type="Self.Booking_market" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lock_return">
+              <PropertyRef Name="Lock_ReturnID" />
+            </Principal>
+            <Dependent Role="Booking_market">
+              <PropertyRef Name="LockReturnID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_market_Marketlock">
+          <End Role="Marketlock" Type="Self.Marketlock" Multiplicity="0..1" />
+          <End Role="Booking_market" Type="Self.Booking_market" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marketlock">
+              <PropertyRef Name="Marketlock_ID" />
+            </Principal>
+            <Dependent Role="Booking_market">
+              <PropertyRef Name="Marketlock_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_market_Utility_Market">
+          <End Role="Utility_Market" Type="Self.Utility_Market" Multiplicity="0..1" />
+          <End Role="Booking_market" Type="Self.Booking_market" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utility_Market">
+              <PropertyRef Name="UtilityID" />
+            </Principal>
+            <Dependent Role="Booking_market">
+              <PropertyRef Name="UtilityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Marketlock_Booking_market">
+          <End Role="Booking_market" Type="Self.Booking_market" Multiplicity="0..1" />
+          <End Role="Marketlock" Type="Self.Marketlock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Booking_market">
+              <PropertyRef Name="BookingNumber" />
+            </Principal>
+            <Dependent Role="Marketlock">
+              <PropertyRef Name="BookingNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_Market_Booking_market">
+          <End Role="Booking_market" Type="Self.Booking_market" Multiplicity="0..1" />
+          <End Role="Payment_Market" Type="Self.Payment_Market" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Booking_market">
+              <PropertyRef Name="BookingNumber" />
+            </Principal>
+            <Dependent Role="Payment_Market">
+              <PropertyRef Name="BookingNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Revenue_Table_Booking_market">
+          <End Role="Booking_market" Type="Self.Booking_market" Multiplicity="0..1" />
+          <End Role="Revenue_Table" Type="Self.Revenue_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Booking_market">
+              <PropertyRef Name="BookingNumber" />
+            </Principal>
+            <Dependent Role="Revenue_Table">
+              <PropertyRef Name="BookingNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lock_return_Fine_market2">
+          <End Role="Fine_market" Type="Self.Fine_market" Multiplicity="0..1" />
+          <End Role="Lock_return" Type="Self.Lock_return" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fine_market">
+              <PropertyRef Name="FineID" />
+            </Principal>
+            <Dependent Role="Lock_return">
+              <PropertyRef Name="FineTypeID1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lock_return_Fine_market3">
+          <End Role="Fine_market" Type="Self.Fine_market" Multiplicity="0..1" />
+          <End Role="Lock_return" Type="Self.Lock_return" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fine_market">
+              <PropertyRef Name="FineID" />
+            </Principal>
+            <Dependent Role="Lock_return">
+              <PropertyRef Name="FineTypeID2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_FleamarketEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Booking_market" EntityType="Self.Booking_market" />
+          <EntitySet Name="Category_product" EntityType="Self.Category_product" />
+          <EntitySet Name="Customer_market" EntityType="Self.Customer_market" />
+          <EntitySet Name="Employee_market" EntityType="Self.Employee_market" />
+          <EntitySet Name="Fine_market" EntityType="Self.Fine_market" />
+          <EntitySet Name="Lock_return" EntityType="Self.Lock_return" />
+          <EntitySet Name="Login_Account" EntityType="Self.Login_Account" />
+          <EntitySet Name="Marketlocks" EntityType="Self.Marketlock" />
+          <EntitySet Name="Member_market" EntityType="Self.Member_market" />
+          <EntitySet Name="Payment_Market" EntityType="Self.Payment_Market" />
+          <EntitySet Name="Revenue_Table" EntityType="Self.Revenue_Table" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Utility_Market" EntityType="Self.Utility_Market" />
+          <AssociationSet Name="FK_Booking_market_Category_product" Association="Self.FK_Booking_market_Category_product">
+            <End Role="Category_product" EntitySet="Category_product" />
+            <End Role="Booking_market" EntitySet="Booking_market" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_market_Customer_market" Association="Self.FK_Booking_market_Customer_market">
+            <End Role="Customer_market" EntitySet="Customer_market" />
+            <End Role="Booking_market" EntitySet="Booking_market" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_market_Employee_market" Association="Self.FK_Booking_market_Employee_market">
+            <End Role="Employee_market" EntitySet="Employee_market" />
+            <End Role="Booking_market" EntitySet="Booking_market" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_market_Lock_return" Association="Self.FK_Booking_market_Lock_return">
+            <End Role="Lock_return" EntitySet="Lock_return" />
+            <End Role="Booking_market" EntitySet="Booking_market" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_market_Marketlock" Association="Self.FK_Booking_market_Marketlock">
+            <End Role="Marketlock" EntitySet="Marketlocks" />
+            <End Role="Booking_market" EntitySet="Booking_market" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_market_Utility_Market" Association="Self.FK_Booking_market_Utility_Market">
+            <End Role="Utility_Market" EntitySet="Utility_Market" />
+            <End Role="Booking_market" EntitySet="Booking_market" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Marketlock_Booking_market" Association="Self.FK_Marketlock_Booking_market">
+            <End Role="Booking_market" EntitySet="Booking_market" />
+            <End Role="Marketlock" EntitySet="Marketlocks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_Market_Booking_market" Association="Self.FK_Payment_Market_Booking_market">
+            <End Role="Booking_market" EntitySet="Booking_market" />
+            <End Role="Payment_Market" EntitySet="Payment_Market" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Revenue_Table_Booking_market" Association="Self.FK_Revenue_Table_Booking_market">
+            <End Role="Booking_market" EntitySet="Booking_market" />
+            <End Role="Revenue_Table" EntitySet="Revenue_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lock_return_Fine_market2" Association="Self.FK_Lock_return_Fine_market2">
+            <End Role="Fine_market" EntitySet="Fine_market" />
+            <End Role="Lock_return" EntitySet="Lock_return" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lock_return_Fine_market3" Association="Self.FK_Lock_return_Fine_market3">
+            <End Role="Fine_market" EntitySet="Fine_market" />
+            <End Role="Lock_return" EntitySet="Lock_return" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_FleamarketModelStoreContainer" CdmEntityContainer="DB_FleamarketEntities">
+          <EntitySetMapping Name="Booking_market">
+            <EntityTypeMapping TypeName="DB_FleamarketModel.Booking_market">
+              <MappingFragment StoreEntitySet="Booking_market">
+                <ScalarProperty Name="BookingNumber" ColumnName="BookingNumber" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="ShopName" ColumnName="ShopName" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Marketlock_ID" ColumnName="Marketlock_ID" />
+                <ScalarProperty Name="Typesofproductssold" ColumnName="Typesofproductssold" />
+                <ScalarProperty Name="Numberofproducts" ColumnName="Numberofproducts" />
+                <ScalarProperty Name="LockPrice" ColumnName="LockPrice" />
+                <ScalarProperty Name="PaymentAmount" ColumnName="PaymentAmount" />
+                <ScalarProperty Name="Paymentstatus" ColumnName="Paymentstatus" />
+                <ScalarProperty Name="BookingDetails" ColumnName="BookingDetails" />
+                <ScalarProperty Name="ReservationPeriod" ColumnName="ReservationPeriod" />
+                <ScalarProperty Name="Dateofreservation" ColumnName="Dateofreservation" />
+                <ScalarProperty Name="Bookingenddate" ColumnName="Bookingenddate" />
+                <ScalarProperty Name="TransactionStartDate" ColumnName="TransactionStartDate" />
+                <ScalarProperty Name="LockReturnID" ColumnName="LockReturnID" />
+                <ScalarProperty Name="UtilityID" ColumnName="UtilityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category_product">
+            <EntityTypeMapping TypeName="DB_FleamarketModel.Category_product">
+              <MappingFragment StoreEntitySet="Category_product">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customer_market">
+            <EntityTypeMapping TypeName="DB_FleamarketModel.Customer_market">
+              <MappingFragment StoreEntitySet="Customer_market">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CustomerID_card_number" ColumnName="CustomerID_card_number" />
+                <ScalarProperty Name="CustomerLog_ID" ColumnName="CustomerLog_ID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerLastname" ColumnName="CustomerLastname" />
+                <ScalarProperty Name="CustomerSex" ColumnName="CustomerSex" />
+                <ScalarProperty Name="CustomerPhone" ColumnName="CustomerPhone" />
+                <ScalarProperty Name="CustomerEmail" ColumnName="CustomerEmail" />
+                <ScalarProperty Name="CustomerStatus" ColumnName="CustomerStatus" />
+                <ScalarProperty Name="BookingDetails" ColumnName="BookingDetails" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee_market">
+            <EntityTypeMapping TypeName="DB_FleamarketModel.Employee_market">
+              <MappingFragment StoreEntitySet="Employee_market">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="EmployeeID_card_number" ColumnName="EmployeeID_card_number" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="EmployeeLastname" ColumnName="EmployeeLastname" />
+                <ScalarProperty Name="EmployeeSex" ColumnName="EmployeeSex" />
+                <ScalarProperty Name="Employeebirthday" ColumnName="Employeebirthday" />
+                <ScalarProperty Name="Employeeaddress" ColumnName="Employeeaddress" />
+                <ScalarProperty Name="EmployeePhone" ColumnName="EmployeePhone" />
+                <ScalarProperty Name="EmployeeEmail" ColumnName="EmployeeEmail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fine_market">
+            <EntityTypeMapping TypeName="DB_FleamarketModel.Fine_market">
+              <MappingFragment StoreEntitySet="Fine_market">
+                <ScalarProperty Name="FineID" ColumnName="FineID" />
+                <ScalarProperty Name="FineType" ColumnName="FineType" />
+                <ScalarProperty Name="FineFee" ColumnName="FineFee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lock_return">
+            <EntityTypeMapping TypeName="DB_FleamarketModel.Lock_return">
+              <MappingFragment StoreEntitySet="Lock_return">
+                <ScalarProperty Name="Lock_ReturnID" ColumnName="Lock_ReturnID" />
+                <ScalarProperty Name="BookingID" ColumnName="BookingID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerLastname" ColumnName="CustomerLastname" />
+                <ScalarProperty Name="Marketlock_ID" ColumnName="Marketlock_ID" />
+                <ScalarProperty Name="BookingDetails" ColumnName="BookingDetails" />
+                <ScalarProperty Name="LockReturnDate" ColumnName="LockReturnDate" />
+                <ScalarProperty Name="LateReturnPeriod" ColumnName="LateReturnPeriod" />
+                <ScalarProperty Name="FineTypeID1" ColumnName="FineTypeID1" />
+                <ScalarProperty Name="FineTypeID2" ColumnName="FineTypeID2" />
+                <ScalarProperty Name="FineSum" ColumnName="FineSum" />
+                <ScalarProperty Name="LockSize" ColumnName="LockSize" />
+                <ScalarProperty Name="Bookingenddate" ColumnName="Bookingenddate" />
+                <ScalarProperty Name="LockReturnStatus" ColumnName="LockReturnStatus" />
+                <ScalarProperty Name="FinePayStatus" ColumnName="FinePayStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Login_Account">
+            <EntityTypeMapping TypeName="DB_FleamarketModel.Login_Account">
+              <MappingFragment StoreEntitySet="Login_Account">
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+                <ScalarProperty Name="LoginUsername" ColumnName="LoginUsername" />
+                <ScalarProperty Name="LoginPassword" ColumnName="LoginPassword" />
+                <ScalarProperty Name="LoginType" ColumnName="LoginType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marketlocks">
+            <EntityTypeMapping TypeName="DB_FleamarketModel.Marketlock">
+              <MappingFragment StoreEntitySet="Marketlock">
+                <ScalarProperty Name="Marketlock_ID" ColumnName="Marketlock_ID" />
+                <ScalarProperty Name="MarketZonename" ColumnName="MarketZonename" />
+                <ScalarProperty Name="Marketlock_Size" ColumnName="Marketlock_Size" />
+                <ScalarProperty Name="PriceforFrequenters" ColumnName="PriceforFrequenters" />
+                <ScalarProperty Name="PriceforIrregulars" ColumnName="PriceforIrregulars" />
+                <ScalarProperty Name="Marketlock_Status" ColumnName="Marketlock_Status" />
+                <ScalarProperty Name="BookingNumber" ColumnName="BookingNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Member_market">
+            <EntityTypeMapping TypeName="DB_FleamarketModel.Member_market">
+              <MappingFragment StoreEntitySet="Member_market">
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="MemberID_card_number" ColumnName="MemberID_card_number" />
+                <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+                <ScalarProperty Name="MemberLast" ColumnName="MemberLast" />
+                <ScalarProperty Name="MemberSex" ColumnName="MemberSex" />
+                <ScalarProperty Name="MemberBirthday" ColumnName="MemberBirthday" />
+                <ScalarProperty Name="MemberPhone" ColumnName="MemberPhone" />
+                <ScalarProperty Name="MemberEmail" ColumnName="MemberEmail" />
+                <ScalarProperty Name="MemberUsername" ColumnName="MemberUsername" />
+                <ScalarProperty Name="MemberStatus" ColumnName="MemberStatus" />
+                <ScalarProperty Name="MemberAccesslevel" ColumnName="MemberAccesslevel" />
+                <ScalarProperty Name="MemberInformation" ColumnName="MemberInformation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payment_Market">
+            <EntityTypeMapping TypeName="DB_FleamarketModel.Payment_Market">
+              <MappingFragment StoreEntitySet="Payment_Market">
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+                <ScalarProperty Name="BookingNumber" ColumnName="BookingNumber" />
+                <ScalarProperty Name="SlipPath" ColumnName="SlipPath" />
+                <ScalarProperty Name="SlipImg" ColumnName="SlipImg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Revenue_Table">
+            <EntityTypeMapping TypeName="DB_FleamarketModel.Revenue_Table">
+              <MappingFragment StoreEntitySet="Revenue_Table">
+                <ScalarProperty Name="RevenueID" ColumnName="RevenueID" />
+                <ScalarProperty Name="RevenueType" ColumnName="RevenueType" />
+                <ScalarProperty Name="RevenueNum" ColumnName="RevenueNum" />
+                <ScalarProperty Name="BookingNumber" ColumnName="BookingNumber" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DB_FleamarketModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Utility_Market">
+            <EntityTypeMapping TypeName="DB_FleamarketModel.Utility_Market">
+              <MappingFragment StoreEntitySet="Utility_Market">
+                <ScalarProperty Name="UtilityID" ColumnName="UtilityID" />
+                <ScalarProperty Name="UtilityAmount" ColumnName="UtilityAmount" />
+                <ScalarProperty Name="Billing_Date" ColumnName="Billing_Date" />
+                <ScalarProperty Name="BookingNumber" ColumnName="BookingNumber" />
+                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+                <ScalarProperty Name="DurationUsed" ColumnName="DurationUsed" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerLname" ColumnName="CustomerLname" />
+                <ScalarProperty Name="BookingDetail" ColumnName="BookingDetail" />
+                <ScalarProperty Name="LockID" ColumnName="LockID" />
+                <ScalarProperty Name="MarketZonename" ColumnName="MarketZonename" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
